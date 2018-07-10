@@ -5,5 +5,5 @@ class Usuario < ApplicationRecord
     validates :password, presence: true
     validates :documento, presence: true
     validates :celular, presence: true
-    # validates :direccion, presence: true
+    validates :direccion, presence: true
 end

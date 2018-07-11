@@ -34,7 +34,7 @@ module Api
 
      private
      def usuario_params
-         params.permit(:nombre,:apellido,:email,:password,:documento,:celular)
+         params.permit(:nombre,:apellido,:email,:password,:documento,:celular,:direccion)
      end
 
  end

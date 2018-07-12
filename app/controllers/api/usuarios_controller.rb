@@ -1,5 +1,8 @@
 module Api
     class  UsuariosController < ApplicationController
+        # Solicitamos autenticación a la acción "show" (mostrar en inglés)
+        before_action :authenticate_user, only: [:show]
+        before_action :set_user, only: [:show]
      def index
          usuario = Usuario.order('created_at DESC');
          render json:{status: 'SUCCESS', message:'Loaded usuario', data:usuario},status: :ok
@@ -13,7 +16,7 @@ module Api
          if usuario.save
              render json:{status: 'SUCCESS', message:'Saved usuario', data:usuario},status: :ok
          else
-             render json:{status: 'ERROR', message:'Article not saved', data:usuario.errors},status: :unproncessable_entity
+             render json:{status: 'ERROR', message:'User not saved', data:usuario.errors},status: :unproncessable_entity
          end
      end
 
@@ -31,10 +34,12 @@ module Api
              render json:{status: 'ERROR', message:'Article not updated', data:usuario.errors},status: :unproncessable_entity
          end
      end
-
+     def current
+        render json: current_usuario
+      end
      private
      def usuario_params
-         params.permit(:nombre,:apellido,:email,:password,:documento,:celular,:direccion)
+         params.permit(:email,:password, :password_confirmation)
      end
 
  end

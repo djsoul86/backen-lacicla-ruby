@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace 'api' do
-    resources :usuarios
-   end
+  post 'usuario_token' => 'usuario_token#create'
+  get 'usuario/current' => 'usuario#current'
+  resources :usuarios
 end

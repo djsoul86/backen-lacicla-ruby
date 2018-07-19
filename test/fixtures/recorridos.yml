@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cedula: MyText
+  idtarjeta: MyText
+  origen: MyText
+  destino: MyText
+  kilometros: MyText
+  tarifa: MyText
+  idbicicleta: MyText
+
+two:
+  cedula: MyText
+  idtarjeta: MyText
+  origen: MyText
+  destino: MyText
+  kilometros: MyText
+  tarifa: MyText
+  idbicicleta: MyText

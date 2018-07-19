@@ -1,9 +1,9 @@
 class UsuariosController < ApplicationController
   include Knock::Authenticable
-  protect_from_forgery prepend: true
-  before_action :authenticate_usuario, only: [:show]
-  before_action :set_usuario, only: [:show]
-  
+  # protect_from_forgery prepend: true
+  # before_action :authenticate_usuario, only: [:show]
+  # before_action :set_usuario, only: [:show]
+  wrap_parameters :usuario, include: [:nombre,:email,:apellido,:documento,:idusuario,:celular,:direccion,:password, :password_confirmation]
 
   # GET /usuarios
   # GET /usuarios.json
@@ -31,15 +31,10 @@ class UsuariosController < ApplicationController
   # POST /usuarios.json
   def create
     @usuario = Usuario.new(usuario_params)
-
-    respond_to do |format|
-      if @usuario.save
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
-        format.json { render :show, status: :created, location: @usuario }
-      else
-        format.html { render :new }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
-      end
+    if @usuario.save
+      render json:{status: 'SUCCESS', message:'Saved usuario', data:@usuario},status: :ok
+    else
+      render json:{status: 'ERROR', message:'User not saved', data:@usuario.errors},status: :unproncessable_entity
     end
   end
 
@@ -77,6 +72,6 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :email, :password, :password_confirmation)
+      params.require(:usuario).permit(:nombre, :email, :password, :password_confirmation,:apellido,:documento,:celular,:direccion,:idusuario)
     end
 end

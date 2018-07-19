@@ -1,0 +1,2 @@
+class Recorrido < ApplicationRecord
+end

@@ -19,7 +19,11 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      'Cache-Control' => "public, max-age=#{2.days.to_i}",
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Request-Methods' => 'POST, PUT, DELETE, GET',
+      'Access-Control-Request-Method' => '*',
+      'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     }
   else
     config.action_controller.perform_caching = false

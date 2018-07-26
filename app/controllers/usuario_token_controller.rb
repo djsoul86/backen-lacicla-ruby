@@ -5,16 +5,12 @@ class UsuarioTokenController < ApplicationController
     
 
     def create
-        puts auth_params[:email]
-        puts auth_params[:password]
-        puts "Test"
-        puts auth_token
-      render json: auth_token, status: :created
+      render json:{status: 'SUCCESS', message:'Loaded article', data:auth_token},status: :ok
+      # render json: auth_token, status: :created
     end
 
   private
     def authenticate
-      puts "autenticando usuario..."
       unless entity.present? && entity.authenticate(auth_params[:password])
         raise Knock.not_found_exception_class
       end
@@ -40,15 +36,10 @@ class UsuarioTokenController < ApplicationController
     end
 
     def auth_token
-        puts "Entrando a Token"
         if entity.respond_to? :to_token_payload
             puts entity
           AuthToken.new payload: entity.to_token_payload
         else
-            puts entity.id
-            puts entity.nombre
-            puts entity.email
-            puts entity.password_digest
           AuthToken.new payload: { sub: entity.id }
         end
       end

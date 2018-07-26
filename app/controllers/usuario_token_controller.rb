@@ -5,7 +5,7 @@ class UsuarioTokenController < ApplicationController
     
 
     def create
-      render json:{status: 'SUCCESS', message:'Loaded article', data:auth_token},status: :ok
+      render json:{status: 'SUCCESS', message:'Loaded article', data:auth_token,user:@usuario},status: :ok
       # render json: auth_token, status: :created
     end
 

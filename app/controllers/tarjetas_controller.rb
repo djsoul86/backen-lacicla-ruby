@@ -9,6 +9,11 @@ class TarjetasController < ApplicationController
       end
       def index
         @tarjetas = Tarjeta.all
+        render json:{status: 'SUCCESS', message:'Tarjeta creada', data:@tarjetas},status: :ok
+      end
+      def getbyid
+        @tarjetas = Tarjeta.where(id_usuario:params[:id_usuario])
+        render json:{status: 'SUCCESS', message:'Tarjeta creada', data:@tarjetas},status: :ok
       end
       def tarjeta_params
         params.require(:tarjeta).permit(:numero,:fecha,:codigo,:id_usuario)

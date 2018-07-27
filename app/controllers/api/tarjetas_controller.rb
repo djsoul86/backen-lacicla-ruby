@@ -1,4 +1,5 @@
-class TarjetasController < ApplicationController
+module  Api
+  class TarjetasController < ApplicationController
     def create
         @tarjeta = Tarjeta.new(tarjeta_params)
         if @tarjeta.save
@@ -13,4 +14,5 @@ class TarjetasController < ApplicationController
       def tarjeta_params
         params.require(:tarjeta).permit(:numero,:fecha,:codigo,:id_usuario)
       end
+  end
 end

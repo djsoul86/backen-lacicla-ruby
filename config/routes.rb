@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'tarjetas' => 'tarjetas#index'
   get 'tarjetas/getbyid/:id_usuario' => 'tarjetas#getbyid'
   resources :tarjetas
-  
+  get 'descuentos/getByCodigo/:codigo' => 'descuentos#getByCodigo'
+  resources :descuentos
 end

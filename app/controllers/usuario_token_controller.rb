@@ -16,8 +16,6 @@ class UsuarioTokenController < ApplicationController
       end
     end
 
-    
-
     def entity
       @entity ||=
         if entity_class.respond_to? :from_token_request
@@ -36,8 +34,11 @@ class UsuarioTokenController < ApplicationController
     end
 
     def auth_token
+      puts 'authtoken'
+      @usuario = Usuario.where(email:auth_params[:email])
+      puts 'user'
+      puts @usuario
         if entity.respond_to? :to_token_payload
-            puts entity
           AuthToken.new payload: entity.to_token_payload
         else
           AuthToken.new payload: { sub: entity.id }

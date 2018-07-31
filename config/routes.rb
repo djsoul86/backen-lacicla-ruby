@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :tarjetas
   get 'descuentos/getByCodigo/:codigo' => 'descuentos#getByCodigo'
   resources :descuentos
+  post 'recorridos' => 'recorridos#create'
+  get 'recorridos/getbyid/:id_usuario' => 'recorridos#getbyid'
+  resources :recorridos
 end

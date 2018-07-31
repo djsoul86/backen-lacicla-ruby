@@ -8,7 +8,6 @@ class CreateRecorridos < ActiveRecord::Migration[5.2]
       t.integer :kilometrosrecorridos
       t.string :tarifa
       t.string :idbicicleta
-
       t.timestamps
     end
   end
